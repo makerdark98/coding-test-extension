@@ -1,0 +1,23 @@
+{
+  "manifest_version" : 2,
+  "name" : "codingtest-lmu",
+  "description" : "코딩테스트를 위해 만든 플러그인",
+  "version": "0.1",
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "permissions": [
+    "storage",
+    "tabs"
+  ],
+  "browser_action": {
+    "default_icon": "Rb.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://programmers.co.kr/learn/courses/*"],
+      "js": ["lmu.js"]
+    }
+  ],
+  "options_page": "index.html"
+}

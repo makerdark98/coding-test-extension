@@ -36,4 +36,9 @@ function getTimer() {
       timerContainer.innerText = `${min} : ${sec}`;
     }, 1000);
   })
+  const submitBtn = document.querySelector('#submit-code');
+  console.log(submitBtn);
+  submitBtn.addEventListener('click', (e) => {
+    chrome.runtime.sendMessage({"action": "submit", "uri": window.location.href});
+  })
 })();

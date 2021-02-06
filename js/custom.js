@@ -1,11 +1,15 @@
 let problems;
-chrome.storage.sync.get(['problems'], (item) => {
+chrome.storage.sync.get(['problems', 'submit'], (item) => {
   problems = JSON.parse(item.problems);
+  const submit = JSON.parse(item.submit);
   for (let i = 0; i < problems.length; ++ i) {
     const container = document.querySelector(`#problem-${i+1}`);
     container.children[0].children[1].innerText = problems[i].name;
     container.children[0].href = problems[i].uri;
-    container.children[0].children[2].innerText = problems[i].uri;
+    //container.children[0].children[2].innerText = problems[i].uri;
+    if (submit[problems[i].uri]) {
+      container.children[0].children[2].innerText = `${submit[problems[i].uri]} 회 제출`;
+    }
   }
 });
 
@@ -14,20 +18,33 @@ function init() {
     name: '2xn 타일링',
     uri: 'https://programmers.co.kr/learn/courses/30/lessons/12900'
   }, {
+    name: '추석 트래픽',
+    uri: 'https://programmers.co.kr/learn/courses/30/lessons/17676'
+  }, {
     name: '스킬트리',
     uri: 'https://programmers.co.kr/learn/courses/30/lessons/49993'
   }, {
+    name : '디스크 컨트롤러',
+    uri: 'https://programmers.co.kr/learn/courses/30/lessons/42627'
+  }, {
     name: '하노이탑',
     uri: 'https://programmers.co.kr/learn/courses/30/lessons/12946'
-  }, {
+  /*}, {
+    // python을 지원하지 않아 제외
     name: '보행자 천국',
     uri: 'https://programmers.co.kr/learn/courses/30/lessons/1832'
+    */
   }, {
     name: '올바른 괄호의 갯수',
     uri: 'https://programmers.co.kr/learn/courses/30/lessons/12929'
+  }, {
+    name : 'N-Queen',
+    uri: 'https://programmers.co.kr/learn/courses/30/lessons/12952'
   }]
   chrome.storage.sync.set({'isInit': 'true'});
   chrome.storage.sync.set({'problems': JSON.stringify(problems)});
+  chrome.storage.sync.remove(['timer']);
+  chrome.storage.sync.set({'submit': JSON.stringify({})});
 }
 
 function removeProblem() {
@@ -56,4 +73,24 @@ document.querySelector('#remove-problem').addEventListener('click', ()=> {
 })
 document.querySelector('#set-timer').addEventListener('click', ()=> {
   setTimer();
+  displayTimer();
+  document.querySelector('#services').scrollIntoView();
 })
+
+function displayTimer() {
+  chrome.storage.sync.get(['timer'], (items) => {
+    if (items.timer) {
+      const timerContainer = document.querySelector('#remain');
+      const t = Number(items.timer);
+      setInterval(function() {
+        const remain = Number.parseInt((t - (new Date()).getTime())) / 1000;
+        const min = Number.parseInt(remain / 60);
+        const sec = Number.parseInt(remain % 60);
+        timerContainer.innerText = `남은 시간 ${min} : ${sec}`;
+      }, 1000);
+      document.querySelector('#services').scrollIntoView();
+    
+    }
+  })
+}
+displayTimer();

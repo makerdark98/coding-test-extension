@@ -1,24 +1,19 @@
 function init() {
   const problems = [{
-    name: '2xn 타일링',
-    uri: 'https://programmers.co.kr/learn/courses/30/lessons/12900'
+    name: '3xn 타일링',
+    uri: 'https://programmers.co.kr/learn/courses/30/lessons/12902'
   }, {
-    name: '추석 트래픽',
-    uri: 'https://programmers.co.kr/learn/courses/30/lessons/17676'
+    name: '단어 변환',
+    uri: 'https://programmers.co.kr/learn/courses/30/lessons/43163'
   }, {
-    name: '스킬트리',
-    uri: 'https://programmers.co.kr/learn/courses/30/lessons/49993'
+    name : '정수 삼각형',
+    uri: 'https://programmers.co.kr/learn/courses/30/lessons/43105'
   }, {
-    name : '디스크 컨트롤러',
-    uri: 'https://programmers.co.kr/learn/courses/30/lessons/42627'
+    name: '지형이동',
+    uri: 'https://programmers.co.kr/learn/courses/30/lessons/62050'
   }, {
-    name: '하노이탑',
-    uri: 'https://programmers.co.kr/learn/courses/30/lessons/12946'
-  /*}, {
-    // python을 지원하지 않아 제외
-    name: '보행자 천국',
-    uri: 'https://programmers.co.kr/learn/courses/30/lessons/1832'
-    */
+    name: '거스름돈',
+    uri: 'https://programmers.co.kr/learn/courses/30/lessons/12907'
   }, {
     name: '올바른 괄호의 갯수',
     uri: 'https://programmers.co.kr/learn/courses/30/lessons/12929'
